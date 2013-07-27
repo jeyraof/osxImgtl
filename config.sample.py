@@ -1,4 +1,4 @@
 upload = "https://api.img.tl/upload"
 
 token = ""
-desc = ""
+desc = "OSX Uploader\nhttps://github.com/jeyraof/osxImgtl"
