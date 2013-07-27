@@ -60,9 +60,9 @@ def removeShot(now):
 def upload(now):
     url = config.upload
     image = {'image': open("%s.png" % now, 'rb')}
-    token = {'token': config.token}
+    postdata = {'token': config.token, 'desc': config.desc}
 
-    r = requests.post(url, data=token, files=image)
+    r = requests.post(url, data=postdata, files=image)
     return json.loads(r.text)
 
 
