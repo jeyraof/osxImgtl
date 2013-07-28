@@ -2,26 +2,23 @@
 
 import config
 import os
+import sys
 import subprocess
 import time
 import json
 import requests
 
 
-def main():
-    print "==========================="
-    print "Screenshot upload to Img.tl"
-    print "==========================="
-    print "[1] Full Screen"
-    print "[2] Select Window"
-    print "[3] Draw Rectangular Form"
-    print "==========================="
+def main(param=0):
+    if param is 0:
+        intro()
+        idx = int(raw_input("Which? : "))
 
-    idx = int(raw_input("Which? : "))
+    else:
+        idx = param
+
     now = time.time()
-
     isFile = takeShot(idx, now)
-
     if isFile:
         result = upload(now)
 
@@ -73,5 +70,21 @@ def toClipboard(string):
     subprocess.call(command, shell=True)
 
 
+def intro():
+    print "==========================="
+    print "Screenshot upload to Img.tl"
+    print "==========================="
+    print "You can also use like bot. "
+    print "$ python screenshot.py [#] "
+    print "==========================="
+    print "[1] Full Screen"
+    print "[2] Select Window"
+    print "[3] Draw Rectangular Form"
+    print "==========================="
+
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1:
+        param = int(sys.argv[1])
+        main(param)
+    else:
+        main()
