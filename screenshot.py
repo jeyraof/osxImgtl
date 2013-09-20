@@ -28,6 +28,7 @@ def main(param=0):
         else:
             toClipboard("")
             print "[Error] upload Failed"
+            print result
 
         removeShot(now)
     else:
@@ -57,11 +58,12 @@ def removeShot(now):
 def upload(now):
     url = config.upload
     image = {'image': open("%s.png" % now, 'rb')}
-    postdata = {'desc': config.desc}
+    data = {'desc': config.desc}
+    headers = {}
     if len(config.token) > 0:
-        postdata['token'] = config.token
+        headers['X-IMGTL-TOKEN'] = config.token
 
-    r = requests.post(url, data=postdata, files=image)
+    r = requests.post(url, data=data, files=image, headers=headers)
     return json.loads(r.text)
 
 
