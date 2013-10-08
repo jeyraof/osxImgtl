@@ -57,7 +57,7 @@ def removeShot(now):
 
 def upload(now):
     url = config.upload
-    image = {'image': open("%s.png" % now, 'rb')}
+    image = {'file': open("%s.png" % now, 'rb')}
     data = {'desc': config.desc}
     headers = {}
     if len(config.token) > 0:
